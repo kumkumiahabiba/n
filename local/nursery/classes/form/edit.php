@@ -40,11 +40,11 @@ class edit extends moodleform {
         $mform->setType('plant_name', PARAM_NOTAGS);                   //Set type of element
         $mform->setDefault('plant_name', 'Please enter plant');        //Default value
 
-        $mform->addElement('float', 'unit_price', get_string('name','local_nursery')); // Add elements to your form
+        $mform->addElement('float', 'unit_price', get_string('price','local_nursery')); // Add elements to your form
         $mform->setType('unit_price', PARAM_NOTAGS);                   //Set type of element
         $mform->setDefault('unit_price', 'Please enter plant price');        //Default value
 
-        $mform->addElement('int', 'quantity', get_string('name','local_nursery')); // Add elements to your form
+        $mform->addElement('text', 'quantity', get_string('quantity','local_nursery')); // Add elements to your form
         $mform->setType('quantity', PARAM_NOTAGS);                   //Set type of element
         $mform->setDefault('quantity', 'Please enter the number of plants');        //Default value
 

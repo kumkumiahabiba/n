@@ -24,4 +24,16 @@
 
 
 $string['pluginname'] = 'local_nursery';
+$string['title_manage']='Manage and View';
+$string['title_update']='Update Data';
+$string['title_delete']='Delete Data';
+$string['plant_name']='Plant name';
+$string['quantity']='# of available fish';
+$string['unit_price']='Price per plant';
+$string['cancelled']='Update form is cancelled';
+$string['edit_data']='Add new plant';
+$string['edit_quantity']='Add the number of plant';
+$string['edit_unit_price']='Add the price per plant';
+$string['delete_plant']='Delete the selected fish';
+$str
 

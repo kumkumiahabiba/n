@@ -35,6 +35,22 @@ $PAGE->set_title('edit page');
 //call form edit class
 $mform= new edit();
 
+
+if ($mform->is_cancelled()) {
+    //Handle form cancel operation, if cancel button is present on form
+    redirect($CFG->wwwroot . '/local/nursery/manage.php', 'No new plant is added.');
+} else if ($fromform = $mform->get_data()) {
+    //In this case you process validated data. $mform->get_data() returns data posted in form.
+    $record = new stdClass();
+    $record->plant_name = $fromform->plant_name;
+    $record->quantity = $fromform->quantity;
+    $record->unit_price = $fromform->unit_price;
+
+
+    $DB->insert_record('local_nursery_plant_data', $record);
+    redirect($CFG->wwwroot . '/local/nursery/manage.php', 'New plant  is added.');
+}
+
 echo $OUTPUT->header();
 $mform->display();
 echo $OUTPUT->footer();

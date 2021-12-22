@@ -26,15 +26,20 @@
  */
 
 require_once(__DIR__.'/../../config.php');
-
+global $DB;
 $PAGE->set_url(new moodle_url('/local/nursery/manage.php'));
 $PAGE->set_context(\context_system::instance());
 $PAGE->set_title('manage nursery');
 
+$plant_data=$DB->get_records('local_nursery');
+
 echo $OUTPUT->header();
 
 $templatecontext=(object)[
-    'texttodisplay'=>'here is something'
+    'plant_data'=>array_values($plant_data),
+    'editurl'=>new moodle_url('/local/nursery/update.php'),
+    'addurl' => new moodle_url('/local/nursery/edit.php'),
+    'deleteurl' => new moodle_url('/local/nursery/delete.php')
 ];
 echo $OUTPUT->render_from_template('local_nursery/manage',$templatecontext);
 
