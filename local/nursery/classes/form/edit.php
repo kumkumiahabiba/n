@@ -47,7 +47,7 @@ class edit extends moodleform {
         $mform->addElement('text', 'quantity', get_string('quantity','local_nursery')); // Add elements to your form
         $mform->setType('quantity', PARAM_NOTAGS);                   //Set type of element
         $mform->setDefault('quantity', 'Please enter the number of plants');        //Default value
-
+        $this->add_action_buttons();
     }
     //Custom validation should be added here
     function validation($data, $files) {
