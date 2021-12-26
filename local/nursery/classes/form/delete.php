@@ -25,22 +25,33 @@
  * @license
  */
 
-require_once(__DIR__.'/../../config.php');
-global $DB;
-$PAGE->set_url(new moodle_url('/local/nursery/manage.php'));
-$PAGE->set_context(\context_system::instance());
-$PAGE->set_title('manage nursery');
 
-$plant_data=$DB->get_records('local_nursery');
+//moodleform is defined in formslib.php
+require_once("$CFG->libdir/formslib.php");
+class delete extends moodleform
+{
+    //add elements to form
+    public function definition()
+    {
+        global $CFG,$DB;
+        $choices =$DB->get_records('local_nursery');
+        $plant_names =array();
+        $c=0;
+        foreach ($choices as $choice){
+            $plant_names[$c]= $choice->plant_name;
+            $plant_id[$c]= $choice->id;
+            $c++;
+        }//end for
+        $mform=$this->_form; //underscore is important
 
-echo $OUTPUT->header();
+        $mform->addElement('select','plant_names',get_string('deleteplant','local_nursery'),$plant_names);
+        $mform->setDefault('plant_names',0);
+        $this->add_action_buttons();
 
-$templatecontext=(object)[
-    'plant_data'=>array_values($plant_data),
-    'updateurl'=>new moodle_url('/local/nursery/update.php'),
-    'editurl' => new moodle_url('/local/nursery/edit.php'),
-    'deleteurl' => new moodle_url('/local/nursery/delete.php')
-];
-echo $OUTPUT->render_from_template('local_nursery/manage',$templatecontext);
-
-echo $OUTPUT->footer();
+    }//end definition
+    //customer valivation shouls be added here
+    function validation($data, $files)
+    {
+        return array();
+    }
+}//end class

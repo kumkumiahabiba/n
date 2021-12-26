@@ -34,7 +34,7 @@ $PAGE->set_context(\context_system::instance());
 $PAGE->set_title('edit page');
 //call form edit class
 $mform= new edit();
-
+global $DB;
 
 if ($mform->is_cancelled()) {
     //Handle form cancel operation, if cancel button is present on form
@@ -47,7 +47,7 @@ if ($mform->is_cancelled()) {
     $record->unit_price = $fromform->unit_price;
 
 
-    $DB->insert_record('local_nursery_plant_data', $record);
+    $DB->insert_record('local_nursery', $record);
     redirect($CFG->wwwroot . '/local/nursery/manage.php', 'New plant  is added.');
 }
 

@@ -22,13 +22,12 @@
  * @license
  */
 
-
 require_once(__DIR__ . '/../../config.php');
 require_once($CFG->dirroot . '/local/nursery/classes/form/delete.php');
-
+global $DB;
 $PAGE->set_url(new moodle_url('/local/nursery/delete.php'));
 $PAGE->set_context(\context_system::instance());
-$PAGE->set_title(get_string('title_delete', 'local_nursery'));
+$PAGE->set_title(get_string('delete', 'local_nursery'));
 
 
 $plant_id = array();
@@ -49,10 +48,11 @@ if ($mform->is_cancelled()) {
     redirect($CFG->wwwroot . '/local/nursery/manage.php', "Nothing is deleted");
 } else if ($fromform = $mform->get_data()) {
     //In this case you process validated data. $mform->get_data() returns data posted in form.
-    $plant_id = $plantid[$fromform->plant_name];
+    $plant_id = $plant_id[$fromform->plant_name];
+
     $DB->delete_records('local_nursery', array('id' => $plant_id));
 
-    redirect($CFG->wwwroot . '/local/nursery/manage.php', $plant_names[$fromform->plan_tname] . " is deleted");
+    redirect($CFG->wwwroot . '/local/nursery/manage.php', $plant_names[$fromform->plant_name] . " is deleted");
 }
 
 echo $OUTPUT->header();
