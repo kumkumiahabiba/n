@@ -1,0 +1,55 @@
+{{!
+        This file is part of Moodle - http://moodle.org/
+
+        Moodle is free software: you can redistribute it and/or modify
+        it under the terms of the GNU General Public License as published by
+        the Free Software Foundation, either version 3 of the License, or
+        (at your option) any later version.
+
+        Moodle is distributed in the hope that it will be useful,
+        but WITHOUT ANY WARRANTY; without even the implied warranty of
+        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        GNU General Public License for more details.
+
+        You should have received a copy of the GNU General Public License
+        along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+        }}
+        {{!
+        @template local_nursery/manage
+
+
+        Example context (json):
+        {
+
+        }
+        }}
+
+
+        <h1>Avauilable plant</h1>
+        <table border="1">
+        <thead>
+        <tr>
+        <th>Plant Name</th>
+        <th>Quantity</th>
+        <th>Unit Price</th>
+        <th>Edit Plant</th>
+        </tr>
+        </thead>
+        <hr>
+        <tbody>
+            {{#plant_data}}
+            <tr>
+                <td>{{plant_name}}</td>
+                <td>{{quantity}}</td>
+                <td>{{unit_price}}</td>
+                <td>
+                     <a href="{{editurl}}?id={{id}}">Update</a>
+                     <a href="{{deleteurl}}?id={{id}}" >Delete</a>
+                </td>
+            </tr>
+            {{/plant_data}}
+        </tbody>
+        </table>
+
+ <hr>
+  <input type="button" value="Add new plant" class="btn btn-outline-primary" onclick="location.href='{{editurl}}'">
